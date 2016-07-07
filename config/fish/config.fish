@@ -2,10 +2,6 @@
 # alias rm="rmtrash"
 alias rme="rm -riv"
 
-
-# Paths to your tackle
-set tacklebox_path ~/.tackle ~/.tacklebox
-
 # Base16 Shell
 if status --is-interactive
     eval sh $HOME/.config/base16-shell/scripts/base16-default-dark.sh
