@@ -8,7 +8,7 @@
 
 dir=~/Development/repositories/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
-files="gitconfig tmux.conf config config.fish tackle tacklebox"    # list of files/folders to symlink in homedir
+files="gitconfig tmux.conf config config.fish"    # list of files/folders to symlink in homedir
 
 ##########
 
