@@ -9,10 +9,10 @@ alias rme="rm -riv"
 set tacklebox_path ~/.tackle ~/.tacklebox
 
 # Base16 Shell
-eval sh $HOME/.config/base16-shell/base16-default.dark.sh
+if status --is-interactive
+    eval sh $HOME/.config/base16-shell/scripts/base16-default-dark.sh
+end
 
-# Theme
-set tacklebox_theme entropy
 
 # Which modules would you like to load? (modules can be found in ~/.tackle/modules/*)
 # Custom modules may be added to ~/.tacklebox/modules/
