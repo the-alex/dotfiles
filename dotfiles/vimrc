@@ -101,3 +101,9 @@ colorscheme solarized
 
 " All yanking to system clipboard
 set clipboard=unnamed
+
+
+
+" Plugins
+call plug#begin()
+Plug 'scrooloose/nerdtree'
