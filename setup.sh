@@ -6,7 +6,7 @@
 
 ########## Variables
 
-dir=~/Development/repositories/dotfiles                    # dotfiles directory
+dir=$(pwd)/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
 files="$(ls dotfiles)"    # list of files/folders to symlink in homedir
 
