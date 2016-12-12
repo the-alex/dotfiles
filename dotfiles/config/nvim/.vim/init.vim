@@ -1,7 +1,6 @@
 " Don't try to be vi compatible
 set nocompatible
 
-
 " Helps force plugins to load correctly when it is turned back on below
 filetype off
 
@@ -41,6 +40,7 @@ set noshiftround
 
 " trim whitespace
 nmap <leader>ws :%s/\s\+$//e<CR>
+"   asd asd
 
 " Cursor motion
 
@@ -94,11 +94,10 @@ set listchars=tab:▸\ ,eol:¬
 map <leader>l :set list!<CR> " Toggle tabs and EOL
 
 " Color scheme (terminal)
-"set t_Co=256
+set t_Co=256
 set background=dark
-"let g:solarized_termcolors=256
-"let g:solarized_termtrans=1
-
+let g:solarized_termcolors=256
+let g:solarized_termtrans=1
 " All yanking to system clipboard
 set clipboard=unnamed
 
@@ -125,11 +124,10 @@ Plug 'morhetz/gruvbox'
 
 call plug#end()
 
-" PLUGIN SETTINGS
-
 " Must place this after plugins are loaded
 colorscheme gruvbox
 
 
 
+" PLUGIN SETTINGS
 let g:airline_theme='base16'

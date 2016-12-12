@@ -1,3 +1,4 @@
+
 " Don't try to be vi compatible
 set nocompatible
 
@@ -127,9 +128,12 @@ call plug#end()
 
 " PLUGIN SETTINGS
 
+
+set termguicolors
 " Must place this after plugins are loaded
 colorscheme gruvbox
 
 
 
 let g:airline_theme='base16'
+
