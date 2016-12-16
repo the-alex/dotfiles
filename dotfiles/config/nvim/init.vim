@@ -1,4 +1,8 @@
 
+" Exit terminal mode
+tnoremap <Esc> <C-\><C-n>
+
+
 " Don't try to be vi compatible
 set nocompatible
 
@@ -107,12 +111,18 @@ set clipboard=unnamed
 nmap <leader>nt :NERDTreeToggle<CR>
 
 " reload vimrc
-nmap <leader>rc :so ~/.vimrc<CR>
+nmap <leader>rc :so ~/.config/nvim/init.vim<CR>
 
 " Open ~/.vimrc
-nmap <leader>erc :e ~/.vimrc<CR>
+nmap <leader>erc :e ~/.config/nvim/init.vim<CR>
 " Save file
 nmap <leader>w :w<CR>
+
+" Open a terminal
+nmap <leader>te :te<CR>
+
+" Run current program
+nmap <leader>run :!./%<CR>
 
 " Plugins
 call plug#begin('~/.vim/plugged')
@@ -123,6 +133,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
 Plug 'morhetz/gruvbox'
+Plug 'davidhalter/jedi-vim'
 
 call plug#end()
 
