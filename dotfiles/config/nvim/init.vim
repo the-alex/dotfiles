@@ -2,6 +2,8 @@
 " Exit terminal mode
 tnoremap <Esc> <C-\><C-n>
 
+" Spell checking
+nnoremap \s ea<C-X><C-S>
 
 " Don't try to be vi compatible
 set nocompatible
@@ -98,12 +100,6 @@ set listchars=tab:▸\ ,eol:¬
 " Or use your leader key + l to toggle on/off
 map <leader>l :set list!<CR> " Toggle tabs and EOL
 
-" Color scheme (terminal)
-"set t_Co=256
-set background=dark
-"let g:solarized_termcolors=256
-"let g:solarized_termtrans=1
-
 " All yanking to system clipboard
 set clipboard=unnamed
 
@@ -124,6 +120,9 @@ nmap <leader>te :te<CR>
 " Run current program
 nmap <leader>run :!./%<CR>
 
+" Color scheme (terminal)
+set background=dark
+
 " Plugins
 call plug#begin('~/.vim/plugged')
 
@@ -136,20 +135,27 @@ Plug 'morhetz/gruvbox'
 Plug 'davidhalter/jedi-vim'
 " Not working
 " Plug 'Valloric/YouCompleteMe'
+Plug 'junegunn/goyo.vim'
+Plug 'vim-scripts/SpellCheck'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tpope/vim-surround'
 
 call plug#end()
 
 " PLUGIN SETTINGS
 
-
+" Italics
+let g:gruvbox_italic=1
+" For trucolors
 set termguicolors
+" Colorscheme consistency
+let g:airline_theme='gruvbox'
+let g:gruvbox_contrast_dark='hard'
 " Must place this after plugins are loaded
 colorscheme gruvbox
 
+" Pressing ,ss will toggle and untoggle spell checking
+nmap <leader>ss :setlocal spell!<cr>
 
-
-let g:airline_theme='base16'
-
-" ycm debugging
-let g:ycm_server_keep_logfiles = 1
-let g:ycm_server_log_level = 'debug'
+" Goyo (distraction free editing) shortcut
+nmap <silent> <leader>zz :Goyo<cr>
