@@ -6,9 +6,9 @@
 
 ########## Variables
 
-dir=$(pwd)/dotfiles                    # dotfiles directory
+dir=~/dotfiles/dotfiles   # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
-files="$(ls dotfiles)"    # list of files/folders to symlink in homedir
+files="$(ls $dir)"    # list of files/folders to symlink in homedir
 
 ##########
 
@@ -30,3 +30,4 @@ for file in $files; do
     echo "Creating symlink to $file in home directory."
     ln -s $dir/$file ~/.$file
 done
+
