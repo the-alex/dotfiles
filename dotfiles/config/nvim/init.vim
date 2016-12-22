@@ -134,6 +134,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
 Plug 'morhetz/gruvbox'
 Plug 'davidhalter/jedi-vim'
+" Not working
+" Plug 'Valloric/YouCompleteMe'
 
 call plug#end()
 
@@ -148,3 +150,6 @@ colorscheme gruvbox
 
 let g:airline_theme='base16'
 
+" ycm debugging
+let g:ycm_server_keep_logfiles = 1
+let g:ycm_server_log_level = 'debug'
