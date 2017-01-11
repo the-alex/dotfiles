@@ -124,7 +124,7 @@ nmap <leader>run :!./%<CR>
 set background=dark
 
 " Plugins
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
