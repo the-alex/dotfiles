@@ -46,6 +46,9 @@ set softtabstop=2
 set expandtab
 set noshiftround
 
+" HTML Specific Whitespace Settings;
+au FileType html set tw=160
+
 " trim whitespace
 nmap <leader>ws :%s/\s\+$//e<CR>
 
@@ -144,10 +147,13 @@ call plug#end()
 
 " PLUGIN SETTINGS
 
+" For trucolors
+if has("termguicolors")
+set termguicolors
+endif
+
 " Italics
 let g:gruvbox_italic=1
-" For trucolors
-set termguicolors
 " Colorscheme consistency
 let g:airline_theme='gruvbox'
 let g:gruvbox_contrast_dark='hard'
