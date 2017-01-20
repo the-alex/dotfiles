@@ -2,3 +2,4 @@
 fishd.*
 *nvim/plugged/SpellCheck*
 *plugged*
+/dotfiles/config/hub
