@@ -3,3 +3,4 @@ fishd.*
 *nvim/plugged/SpellCheck*
 *plugged*
 /dotfiles/config/hub
+.DS_store

@@ -115,7 +115,7 @@ nmap <leader>rc :so ~/.config/nvim/init.vim<CR>
 " Open ~/.vimrc
 nmap <leader>erc :e ~/.config/nvim/init.vim<CR>
 " Save file
-nmap <leader>w :w<CR>
+nmap <leader>W :w<CR>
 
 " Open a terminal
 nmap <leader>te :te<CR>
@@ -142,7 +142,11 @@ Plug 'junegunn/goyo.vim'
 Plug 'vim-scripts/SpellCheck'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-surround'
-
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'w0rp/ale'
+Plug 'ervandew/supertab'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 call plug#end()
 
 " PLUGIN SETTINGS
@@ -165,3 +169,18 @@ nmap <leader>ss :setlocal spell!<cr>
 
 " Goyo (distraction free editing) shortcut
 nmap <silent> <leader>zz :Goyo<cr>
+
+" Line number toggle
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set number
+    set nornu
+  else
+    set relativenumber
+  endif
+endfunc
+nnoremap <C-n> :call NumberToggle()<cr>
+
+" Configure tabularize to leader + a + = for aligning at equal signs.
+nmap <Leader>a= :Tabularize /=<CR>
+vmap <Leader>a= :Tabularize /=<CR>
