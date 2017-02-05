@@ -114,6 +114,7 @@ nmap <leader>rc :so ~/.config/nvim/init.vim<CR>
 
 " Open ~/.vimrc
 nmap <leader>erc :e ~/.config/nvim/init.vim<CR>
+
 " Save file
 nmap <leader>W :w<CR>
 
@@ -147,6 +148,7 @@ Plug 'plasticboy/vim-markdown'
 Plug 'w0rp/ale'
 Plug 'ervandew/supertab'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'easymotion/vim-easymotion'
 call plug#end()
 
 " PLUGIN SETTINGS
@@ -161,6 +163,7 @@ let g:gruvbox_italic=1
 " Colorscheme consistency
 let g:airline_theme='gruvbox'
 let g:gruvbox_contrast_dark='hard'
+
 " Must place this after plugins are loaded
 colorscheme gruvbox
 
@@ -184,3 +187,8 @@ nnoremap <C-n> :call NumberToggle()<cr>
 " Configure tabularize to leader + a + = for aligning at equal signs.
 nmap <Leader>a= :Tabularize /=<CR>
 vmap <Leader>a= :Tabularize /=<CR>
+
+
+" Stop autofolding my markdown files
+let g:vim_markdown_folding_disabled = 1
+
