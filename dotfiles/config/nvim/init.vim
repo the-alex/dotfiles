@@ -40,9 +40,12 @@ set encoding=utf-8
 set wrap
 set textwidth=79
 set formatoptions=tcqrn1
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
+"set tabstop=2
+"set shiftwidth=2
+"set softtabstop=2
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 set expandtab
 set noshiftround
 
@@ -115,8 +118,7 @@ nmap <leader>rc :so ~/.config/nvim/init.vim<CR>
 " Open ~/.vimrc
 nmap <leader>erc :e ~/.config/nvim/init.vim<CR>
 
-" Save file
-nmap <leader>W :w<CR>
+nmap :W<CR> :w<CR>
 
 " Open a terminal
 nmap <leader>te :te<CR>
@@ -136,7 +138,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
 Plug 'morhetz/gruvbox'
-Plug 'davidhalter/jedi-vim'
+"Plug 'davidhalter/jedi-vim'
 " Not working
 " Plug 'Valloric/YouCompleteMe'
 Plug 'junegunn/goyo.vim'
@@ -162,7 +164,7 @@ endif
 let g:gruvbox_italic=1
 " Colorscheme consistency
 let g:airline_theme='gruvbox'
-let g:gruvbox_contrast_dark='hard'
+"let g:gruvbox_contrast_dark='hard'
 
 " Must place this after plugins are loaded
 colorscheme gruvbox
