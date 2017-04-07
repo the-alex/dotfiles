@@ -5,6 +5,8 @@
   email = thealex@umich.edu
 [push]
   default = matching
+[pull]
+    rebase = true
 [help]
   autocorrect = 1
 [alias]
@@ -13,4 +15,4 @@
   lg = !"git lg1"
   st = "status"
   co = checkout
-
+  graph = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold blue)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all

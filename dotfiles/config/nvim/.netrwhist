@@ -1,9 +1,2 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='/Users/theLoaner/Development/repositories/vps-talk-c4cs'
-let g:netrw_dirhist_2='/Users/theLoaner/Development/repositories/vps-talk-c4cs/aws'
-let g:netrw_dirhist_3='/Users/theLoaner/Development/repositories/vps-talk-c4cs'
-let g:netrw_dirhist_4='/Users/theLoaner/.vim'
-let g:netrw_dirhist_5='/Users/theLoaner/dotfiles/dotfiles/config'
-let g:netrw_dirhist_6='/Users/theLoaner/.vim'
-let g:netrw_dirhist_7='/Users/theLoaner/Google Drive/Classes/eecs445/f16/hw/hw6'
+let g:netrw_dirhist_cnt =0

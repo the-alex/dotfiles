@@ -7,14 +7,14 @@ ZSH_THEME_NVM_PROMPT_SUFFIX=""
 
 ### Git [±master ▾●]
 
-ZSH_THEME_GIT_PROMPT_PREFIX="[%{$fg_bold[green]%}±%{$reset_color%}%{$fg_bold[white]%}"
+ZSH_THEME_GIT_PROMPT_PREFIX="[%{$fg_bold[green]%} ± %{$reset_color%}%{$fg_bold[white]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}]"
-ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}✓%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_AHEAD="%{$fg[cyan]%}▴%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_BEHIND="%{$fg[magenta]%}▾%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_STAGED="%{$fg_bold[green]%}●%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_UNSTAGED="%{$fg_bold[yellow]%}●%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg_bold[red]%}●%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%} ✓ %{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_AHEAD="%{$fg[cyan]%} ▴ %{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_BEHIND="%{$fg[magenta]%} ▾ %{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_STAGED="%{$fg_bold[green]%} ● %{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_UNSTAGED="%{$fg_bold[yellow]%} ● %{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg_bold[red]%}● %{$reset_color%}"
 
 bureau_git_branch () {
   ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
@@ -78,14 +78,14 @@ bureau_git_prompt () {
 }
 
 
-_PATH="%{$fg_bold[white]%}%~%{$reset_color%}"
+_PATH="%{$fg_bold[green]%}%~%{$reset_color%}"
 
 if [[ $EUID -eq 0 ]]; then
   _USERNAME="%{$fg_bold[red]%}%n"
   _LIBERTY="%{$fg[red]%}#"
 else
   _USERNAME="%{$fg_bold[white]%}%n"
-  _LIBERTY="%{$fg[green]%}$"
+  _LIBERTY="%{$fg_bold[green]%}λ"
 fi
 _USERNAME="$_USERNAME%{$reset_color%}@%m"
 _LIBERTY="$_LIBERTY%{$reset_color%}"
@@ -106,10 +106,26 @@ get_space () {
   echo $SPACES
 }
 
-_1LEFT="$_USERNAME $_PATH"
-_1RIGHT="[%*] "
+
+preexec_timer() {
+  unset timer
+  timer=${timer:-$SECONDS}
+}
+
+get_time() {
+  if [ $timer ]; then
+    timer_show=$(($SECONDS - $timer))
+    TIMING="%F{green}${timer_show}s%{$reset_color%}"
+    echo $TIMING
+  fi
+}
+
 
 bureau_precmd () {
+  #_1LEFT="$_USERNAME $_PATH"
+  _1LEFT="$_PATH"
+  _1RIGHT='[%T] '
+
   _1SPACES=`get_space $_1LEFT $_1RIGHT`
   print
   print -rP "$_1LEFT$_1SPACES$_1RIGHT"
@@ -117,7 +133,8 @@ bureau_precmd () {
 
 setopt prompt_subst
 PROMPT='> $_LIBERTY '
-RPROMPT='$(nvm_prompt_info) $(bureau_git_prompt)'
+RPROMPT='$(nvm_prompt_info) $(bureau_git_prompt) $(get_time)'
 
 autoload -U add-zsh-hook
 add-zsh-hook precmd bureau_precmd
+add-zsh-hook preexec preexec_timer

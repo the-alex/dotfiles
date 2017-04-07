@@ -1,4 +1,10 @@
 
+"W is w
+command WQ wq
+command Wq wq
+command W w
+command Q q
+
 " Exit terminal mode
 tnoremap <Esc> <C-\><C-n>
 
@@ -131,7 +137,7 @@ set background=dark
 
 " Plugins
 call plug#begin('~/.config/nvim/plugged')
-
+Plug 'lambdatoast/elm.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'vim-airline/vim-airline'
@@ -140,17 +146,18 @@ Plug 'tpope/vim-fugitive'
 Plug 'morhetz/gruvbox'
 "Plug 'davidhalter/jedi-vim'
 " Not working
-" Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe'
+Plug 'ap/vim-buftabline'
 Plug 'junegunn/goyo.vim'
 Plug 'vim-scripts/SpellCheck'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-surround'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
-Plug 'w0rp/ale'
 Plug 'ervandew/supertab'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'easymotion/vim-easymotion'
+Plug 'mattn/emmet-vim'
 call plug#end()
 
 " PLUGIN SETTINGS
@@ -194,3 +201,13 @@ vmap <Leader>a= :Tabularize /=<CR>
 " Stop autofolding my markdown files
 let g:vim_markdown_folding_disabled = 1
 
+let g:ycm_global_ycm_extra_conf = '/Users/thealex/.config/nvim/plugged/YouCompleteMe/ycm_extra_conf.py'
+
+
+"set hidden
+"nnoremap <C-N> :bnext<CR>
+"nnoremap <C-P> :bprev<CR>
+
+" Repam emmet expand to tab
+"imap <expr> <tab> emmet#expandAebrIntelligent("<C-E>")
+"let g:user_emmet_leader_key='<C-E>'
