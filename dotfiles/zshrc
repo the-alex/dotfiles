@@ -1,0 +1,140 @@
+# For Anaconda3 python
+export PATH=$HOME/anaconda3/bin:$PATH
+
+# Path to your oh-my-zsh installation.
+export ZSH=~/.oh-my-zsh
+
+# Set name of the theme to load. Optionally, if you set this to "random"
+# it'll load a random theme each time that oh-my-zsh is loaded.
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+#ZSH_THEME="gallois"
+ZSH_THEME="bureau"
+
+# Uncomment the following line to disable bi-weekly auto-update checks.
+DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git zsh-autosuggestions)
+
+source $ZSH/oh-my-zsh.sh
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# ssh
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+export TERM="screen-256color"
+
+function journal {
+    file="$HOME/journals/$(date +'%Y-%m-%d').md"
+
+    # templating
+    [[ -s "$file" ]] || echo "# $(date +'%A %B %e, %Y')\n\n" > $file
+
+    nvim +3 $file
+}
+
+alias j=journal
+
+function que {
+    file="$HOME/que/$(date +'%Y-%m-%d').md"
+
+    # templating
+    [[ -s "$file" ]] || echo "# $(date +'%A %B %e, %Y')\n\n" > $file
+
+    sublime $file
+}
+
+bindkey "[C" forward-word
+bindkey "[D" backward-word
+
+
+# For truecolor support in tmux
+alias tmux="env TERM=xterm-256color tmux"
+
+
+# Alias vi to vim
+alias vi=nvim
+
+# Alias git to hub
+alias git=hub
+
+# Alias for grepping history
+alias hgrep="fc -El 0 | grep"
+
+# cd + ls
+function cs () {
+  cd "$@" && ls
+}
+alias cd=cs
+
+# Alias for BHT
+alias bht="/Users/thealex/Development/tools/on-path/BigHonkingText -p 0"
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+
+# Screen saver desktop wallpaper
+alias -g ssbg="/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine -background"
+
+# Edit and source command line config
+alias erc="vi ~/.zshrc"
+alias src="source ~/.zshrc"
+
+alias jn="jupyter notebook"
+
+function quick_notes {
+    file="$HOME/quick-notes/$(date +'%Y-%m-%d').md"
+
+    # templating
+    [[ -s "$file" ]] || echo "# $(date +'%A %B %e, %Y')\n\n" > $file
+
+    nvim +3 $file
+}
+alias qn=quick_notes
+
+alias c="clear"
+
+# Stop mouse accelleration
+defaults write .GlobalPreferences com.apple.mouse.scaling -1
+
+CMD_BS="$HOME/command-line-bullshit.txt"
+function command_line_bullshit {
+    cat "$CMD_BS" | grep -E -A $2 "^# $1"
+}
+alias clb="command_line_bullshit"
+
+
+alias psql="psql -h eecs484.eecs.umich.edu -U thealex"
+source ~/secrets.env
