@@ -1,9 +1,9 @@
 
-"W is w
-command WQ wq
-command Wq wq
-command W w
-command Q q
+"W is w and Q is q
+command! WQ wq
+command! Wq wq
+command! W w
+command! Q q
 
 " Exit terminal mode
 tnoremap <Esc> <C-\><C-n>
@@ -44,7 +44,7 @@ set encoding=utf-8
 
 " Whitespace
 set wrap
-set textwidth=79
+"set textwidth=79
 set formatoptions=tcqrn1
 "set tabstop=2
 "set shiftwidth=2
@@ -144,9 +144,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
 Plug 'morhetz/gruvbox'
-"Plug 'davidhalter/jedi-vim'
 " Not working
-Plug 'Valloric/YouCompleteMe'
 Plug 'ap/vim-buftabline'
 Plug 'junegunn/goyo.vim'
 Plug 'vim-scripts/SpellCheck'
@@ -158,6 +156,7 @@ Plug 'ervandew/supertab'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'easymotion/vim-easymotion'
 Plug 'mattn/emmet-vim'
+Plug 'reedes/vim-pencil'
 call plug#end()
 
 " PLUGIN SETTINGS
@@ -211,3 +210,12 @@ let g:ycm_global_ycm_extra_conf = '/Users/thealex/.config/nvim/plugged/YouComple
 " Repam emmet expand to tab
 "imap <expr> <tab> emmet#expandAebrIntelligent("<C-E>")
 "let g:user_emmet_leader_key='<C-E>'
+
+" Highlight line with cursor
+set cursorline
+set cursorcolumn
+
+let g:vim_markdown_conceal = 2
+
+" Turn on deoplete
+call deoplete#enable()
