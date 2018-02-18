@@ -1,9 +1,10 @@
-
 "W is w and Q is q
 command! WQ wq
 command! Wq wq
 command! W w
 command! Q q
+" Fuck ex mode
+map Q <Nop>
 
 " Exit terminal mode
 tnoremap <Esc> <C-\><C-n>
@@ -134,11 +135,14 @@ nmap <leader>run :!./%<CR>
 
 " Color scheme (terminal)
 set background=dark
+"set background=light
 
 " Plugins
 call plug#begin('~/.config/nvim/plugged')
-Plug 'lambdatoast/elm.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'elmcast/elm-vim'
 Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-sleuth'
 Plug 'scrooloose/nerdcommenter'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -148,15 +152,31 @@ Plug 'morhetz/gruvbox'
 Plug 'ap/vim-buftabline'
 Plug 'junegunn/goyo.vim'
 Plug 'vim-scripts/SpellCheck'
+"Plug 'vim-syntastic/syntastic'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-surround'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'ervandew/supertab'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'easymotion/vim-easymotion'
 Plug 'mattn/emmet-vim'
 Plug 'reedes/vim-pencil'
+Plug 'sheerun/vim-polyglot'
+Plug 'lervag/vimtex'
+" post install (yarn install | npm install) then load plugin only for editing supported files
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown'] }
+" Reason stuff
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+" (Optional) Multi-entry selection UI.
+Plug 'junegunn/fzf'
+" (Completion plugin option 2)
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'reasonml-editor/vim-reason-plus'
 call plug#end()
 
 " PLUGIN SETTINGS
@@ -168,9 +188,13 @@ endif
 
 " Italics
 let g:gruvbox_italic=1
+let g:gruvbox_bold=1
+let g:gruvbox_underline=1
+
 " Colorscheme consistency
 let g:airline_theme='gruvbox'
-"let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_contrast_dark='hard'
+"let g:gruvbox_contrast_light='hard'
 
 " Must place this after plugins are loaded
 colorscheme gruvbox
@@ -200,7 +224,7 @@ vmap <Leader>a= :Tabularize /=<CR>
 " Stop autofolding my markdown files
 let g:vim_markdown_folding_disabled = 1
 
-let g:ycm_global_ycm_extra_conf = '/Users/thealex/.config/nvim/plugged/YouCompleteMe/ycm_extra_conf.py'
+"let g:ycm_global_ycm_extra_conf = '/Users/thealex/.config/nvim/plugged/YouCompleteMe/ycm_extra_conf.py'
 
 
 "set hidden
@@ -217,5 +241,37 @@ set cursorcolumn
 
 let g:vim_markdown_conceal = 2
 
-" Turn on deoplete
-call deoplete#enable()
+let g:elm_format_autosave = 1
+let g:polyglot_disabled = ['elm']
+let g:elm_detailed_complete = 1
+let g:elm_format_autosave = 1
+
+let g:elm_syntastic_show_warnings = 1
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_wq = 0
+let g:airline#extensions#syntastic#enabled = 0
+
+
+
+" Syntastic
+let g:syntastic_quiet_messages = { "type": "style", "!level": "errors" }
+"let g:syntastic_disabled_filetypes=['python', 'py']
+let g:syntastic_mode_map = { 'passive_filetypes': ['python'] }
+
+" Map Local Leader for Latex plugin
+let maplocalleader = '\\'
+
+" Reason + NVim languageserver stuff
+let g:LanguageClient_serverCommands = {
+    \ 'reason': ['ocaml-language-server', '--stdio'],
+    \ 'ocaml': ['ocaml-language-server', '--stdio'],
+    \ }
+nnoremap <silent> gd :call LanguageClient_textDocument_definition()<cr>
+nnoremap <silent> gf :call LanguageClient_textDocument_formatting()<cr>
+nnoremap <silent> <cr> :call LanguageClient_textDocument_hover()<cr>
+
+
+" Selectively disable ctrlp search on certain directories
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+

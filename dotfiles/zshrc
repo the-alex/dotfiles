@@ -14,7 +14,7 @@ ZSH_THEME="bureau"
 DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
@@ -31,7 +31,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions)
+plugins=(git zsh-autosuggestions docker heroku)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -55,17 +55,6 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 export TERM="screen-256color"
-
-function journal {
-    file="$HOME/journals/$(date +'%Y-%m-%d').md"
-
-    # templating
-    [[ -s "$file" ]] || echo "# $(date +'%A %B %e, %Y')\n\n" > $file
-
-    nvim +3 $file
-}
-
-alias j=journal
 
 function que {
     file="$HOME/que/$(date +'%Y-%m-%d').md"
@@ -114,13 +103,14 @@ alias src="source ~/.zshrc"
 
 alias jn="jupyter notebook"
 
+EDITOR=`which nvim`
 function quick_notes {
-    file="$HOME/quick-notes/$(date +'%Y-%m-%d').md"
+    file="$HOME/Dropbox/quick-notes/$(date +'%Y-%m-%d').md"
 
     # templating
     [[ -s "$file" ]] || echo "# $(date +'%A %B %e, %Y')\n\n" > $file
 
-    nvim +3 $file
+    $EDITOR +3 $file
 }
 alias qn=quick_notes
 
@@ -136,5 +126,17 @@ function command_line_bullshit {
 alias clb="command_line_bullshit"
 
 
-alias psql="psql -h eecs484.eecs.umich.edu -U thealex"
+#alias psql="psql -h eecs484.eecs.umich.edu -U thealex"
+
 source ~/secrets.env
+
+# temp for flask project, lest I forget
+export FLASK_APP=app.py && export FLASK_DEBUG=1
+
+alias td="termdown"
+
+alias psql-flint="psql -h ec2-23-23-111-171.compute-1.amazonaws.com -p 5432 -U ugjgiivgwfzdvb -W dakltm0hbm8bag"
+#alias elm-format="elm-format-0.18"
+
+alias -g tpb="| pbcopy"
+
